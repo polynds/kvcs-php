@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+/**
+ * happy coding.
+ */
+require_once __DIR__ . '/../vendor/autoload.php';
+
+echo help();
+echo getcwd(). PHP_EOL;
+var_dump($argv,$argc);
+$parmas = $argv;
+$script = array_shift($parmas);
+$command = array_shift($parmas);
+(new \Kvcs\Application())->run($command,$parmas);
+
+function help(): string
+{
+    return <<<'HELP'
+kvcs init
+     add [dir]
+     commit
+     push
+     pull
+HELP . PHP_EOL;
+}
