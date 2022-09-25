@@ -19,6 +19,4 @@ interface KObject
     public function hash(): Hash;
 
     public function type(): string;
-
-    public function write(): string;
 }

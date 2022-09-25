@@ -30,13 +30,32 @@ class Blob extends AbstractKObject
         return KObject::BLOB_OBJECT;
     }
 
-    public function write(): string
+    public function toArray(): array
     {
-        return pack('s4/s/c4/s*', $this->type(), 0x00, strlen($this->obj), $this->obj);
+        return [
+            'type' => $this->type(),
+            'length' => strlen($this->obj),
+            'content' => $this->obj,
+        ];
     }
 
-    public function read(string $bytes): array
+    public function encode(): string
     {
-        return unpack('s4/s/c4/s*', $bytes);
+        return serialize($this->toArray());
     }
+
+    public function decode(string $bytes): array
+    {
+        return unserialize();
+    }
+
+//    public function encode(): string
+//    {
+//        return pack('s4/s/c4/s*', $this->type(), 0x00, strlen($this->obj), $this->obj);
+//    }
+//
+//    public function decode(string $bytes): array
+//    {
+//        return unpack('s4/s/c4/s*', $bytes);
+//    }
 }

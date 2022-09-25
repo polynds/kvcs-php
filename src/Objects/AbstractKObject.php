@@ -12,4 +12,10 @@ abstract class AbstractKObject implements KObject
     {
         return $this->type() === KObject::BLOB_OBJECT;
     }
+
+    abstract public function toArray(): array;
+
+    abstract public function encode(): string;
+
+    abstract public function decode(): string;
 }

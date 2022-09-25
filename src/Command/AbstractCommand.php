@@ -8,5 +8,4 @@ namespace Kit\Command;
 
 abstract class AbstractCommand
 {
-
 }

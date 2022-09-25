@@ -21,13 +21,28 @@ class Application
      */
     protected array $commands;
 
-    public function __construct()
+    protected string $basePath;
+
+    protected Repository $repository;
+
+    protected WorkSpace $workSpace;
+
+    public function __construct(string $basePath)
     {
-        $this->addCommand('init', new InitCommand());
-        $this->addCommand('add', new AddCommand());
-        $this->addCommand('commit', new CommitCommand());
-        $this->addCommand('push', new PushCommand());
-        $this->addCommand('pull', new PullCommand());
+        $this->basePath = $basePath;
+        $this->repository = new Repository($basePath);
+        $this->workSpace = new WorkSpace($basePath);
+        $this->addCommands();
+    }
+
+    public function getRepository(): Repository
+    {
+        return $this->repository;
+    }
+
+    public function getWorkSpace(): WorkSpace
+    {
+        return $this->workSpace;
     }
 
     public function run(string $name, array $parmas)
@@ -37,6 +52,15 @@ class Application
             throw new CommandDoesNotExistException();
         }
         $command->execute($parmas);
+    }
+
+    public function addCommands(): void
+    {
+        $this->addCommand('init', new InitCommand());
+        $this->addCommand('add', new AddCommand());
+        $this->addCommand('commit', new CommitCommand());
+        $this->addCommand('push', new PushCommand());
+        $this->addCommand('pull', new PullCommand());
     }
 
     protected function matchCommand(string $name): ?CommandContract

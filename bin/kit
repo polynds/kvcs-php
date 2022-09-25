@@ -3,15 +3,29 @@
 /**
  * happy coding.
  */
+
+use Kit\Application;
+use Kit\ApplicationContext;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
-echo help();
-echo getcwd(). PHP_EOL;
-var_dump($argv,$argc);
+$basePath = exec('pwd');
 $parmas = $argv;
 $script = array_shift($parmas);
 $command = array_shift($parmas);
-(new \Kvcs\Application())->run($command,$parmas);
+if (empty($command) || empty($basePath)) {
+    echo help();
+    return;
+}
+
+$application = new Application($basePath);
+ApplicationContext::setApplication($application);
+try {
+    $application->run($command, $parmas);
+} catch (Exception $exception) {
+    echo 'ERROR:' . $exception->getMessage() . PHP_EOL;
+    echo help();
+}
 
 function help(): string
 {

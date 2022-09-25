@@ -10,6 +10,6 @@ class AddCommand extends AbstractCommand implements CommandContract
 {
     public function execute(array $parameter = [])
     {
-        // TODO: Implement execute() method.
+        dump($parameter);
     }
 }
