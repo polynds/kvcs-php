@@ -6,8 +6,8 @@ declare(strict_types=1);
  */
 namespace Kit;
 
-use Kit\File\FileWriter;
-use Kit\Objects\Hash;
+use Kit\Cache\IndexEntry;
+use Kit\FileSystem\FileWriter;
 
 class StagingArea
 {
@@ -15,6 +15,9 @@ class StagingArea
 
     protected string $path;
 
+    /**
+     * @var IndexEntry[]
+     */
     protected array $index = [];
 
     public function __construct(string $repositoryPath)
@@ -33,14 +36,17 @@ class StagingArea
         return $this;
     }
 
-    public function getIndexs(): array
+    /**
+     * @return IndexEntry[]
+     */
+    public function getIndex(): array
     {
         return $this->index;
     }
 
-    public function addIndex(string $path, Hash $hash): StagingArea
+    public function addIndex(IndexEntry $indexEntry): StagingArea
     {
-        $this->index[$path] = $hash;
+        $this->index[] = $indexEntry;
         return $this;
     }
 

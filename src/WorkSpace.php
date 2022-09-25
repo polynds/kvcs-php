@@ -6,6 +6,8 @@ declare(strict_types=1);
  */
 namespace Kit;
 
+use Kit\FileSystem\Finder;
+
 class WorkSpace
 {
     protected string $path;
@@ -15,8 +17,10 @@ class WorkSpace
         $this->path = $path;
     }
 
-    public function readFile()
+    public function readFiles(): array
     {
+        $files = Finder::open($this->path)->tree();
+        return $files;
     }
 
     public function createFile()

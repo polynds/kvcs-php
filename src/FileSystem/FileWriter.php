@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * happy coding.
  */
-namespace Kit\File;
+namespace Kit\FileSystem;
 
 use Kit\Exception\CouldNotWriteFileException;
 

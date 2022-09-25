@@ -6,7 +6,7 @@ declare(strict_types=1);
  */
 namespace Kit;
 
-use Kit\File\Directory;
+use Kit\FileSystem\Directory;
 
 class LocalRepository
 {

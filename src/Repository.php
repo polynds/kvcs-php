@@ -7,7 +7,7 @@ declare(strict_types=1);
 namespace Kit;
 
 use Kit\Exception\DirectoryNotExistException;
-use Kit\File\Directory;
+use Kit\FileSystem\Directory;
 
 class Repository
 {
