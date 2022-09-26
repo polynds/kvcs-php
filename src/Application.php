@@ -27,11 +27,14 @@ class Application
 
     protected WorkSpace $workSpace;
 
+    protected KitIgnore $kitIgnore;
+
     public function __construct(string $basePath)
     {
         $this->basePath = $basePath;
         $this->repository = new Repository($basePath);
         $this->workSpace = new WorkSpace($basePath);
+        $this->kitIgnore = new KitIgnore($basePath);
         $this->addCommands();
     }
 
@@ -43,6 +46,11 @@ class Application
     public function getWorkSpace(): WorkSpace
     {
         return $this->workSpace;
+    }
+
+    public function getKitIgnore(): KitIgnore
+    {
+        return $this->kitIgnore;
     }
 
     public function run(string $name, array $parmas)

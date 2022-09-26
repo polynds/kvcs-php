@@ -43,6 +43,10 @@ class Finder
                 continue;
             }
 
+            if (in_array($file, $this->ignore)) {
+                continue;
+            }
+
             $_file = $path . DIRECTORY_SEPARATOR . $file;
 
             if (is_dir($_file)) {
@@ -65,6 +69,10 @@ class Finder
         $files = scandir($path);
         foreach ($files as $key => $file) {
             if (in_array($file, ['.', '..'])) {
+                continue;
+            }
+
+            if (in_array($file, $this->ignore)) {
                 continue;
             }
 

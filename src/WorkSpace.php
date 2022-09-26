@@ -17,10 +17,13 @@ class WorkSpace
         $this->path = $path;
     }
 
-    public function readFiles(): array
+    public function readFiles(array $ignoreFiles): array
     {
-        $files = Finder::open($this->path)->tree();
-        return $files;
+        $finder = Finder::open($this->path);
+        foreach ($ignoreFiles as $file) {
+            $finder->ignore($file);
+        }
+        return $finder->find();
     }
 
     public function createFile()

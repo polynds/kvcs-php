@@ -25,6 +25,8 @@ class KitIgnore
     public function __construct(string $repositoryPath)
     {
         $this->path = $repositoryPath . DIRECTORY_SEPARATOR . self::FILE_NAME;
+        $this->initDirs();
+        $this->initFiles();
         $this->parse();
     }
 
@@ -44,6 +46,28 @@ class KitIgnore
         return $this->dirs;
     }
 
+    /**
+     * 当忽略文件有变化时进行重载.
+     */
+    public function reload(): static
+    {
+        $this->initDirs();
+        $this->initFiles();
+        $this->parse();
+        return $this;
+    }
+
+    private function initDirs()
+    {
+        $this->dirs = [];
+        $this->dirs[] = Repository::DIR_NAME;
+    }
+
+    private function initFiles()
+    {
+        $this->files = [];
+    }
+
     private function parse()
     {
         if (! file_exists($this->path)) {
@@ -54,7 +78,7 @@ class KitIgnore
             return;
         }
         while (feof($handel) !== false) {
-            $line = fgets($handel);
+            $line = fgets($handel);var_dump($line);
             if (is_dir($line)) {
                 $this->dirs[] = $line;
             } elseif (is_file($line)) {
