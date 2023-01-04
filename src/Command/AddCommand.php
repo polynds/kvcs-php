@@ -12,11 +12,13 @@ class AddCommand extends AbstractCommand implements CommandContract
 {
     public function execute(array $parameter = [])
     {
+        $file = $parameter[0] ?? '';
         dump($parameter);
         $ignoreDirs = ApplicationContext::getApplication()->getKitIgnore()->reload()->getIgnoreDirs();
         $ignoreFiles = ApplicationContext::getApplication()->getKitIgnore()->reload()->getIgnoreFiles();
-        var_dump(array_merge($ignoreDirs, $ignoreFiles));
-        $files = ApplicationContext::getApplication()->getWorkSpace()->readFiles(array_merge($ignoreDirs, $ignoreFiles));
+        $ignoreFiles = array_merge($ignoreDirs, $ignoreFiles);
+        var_dump($ignoreFiles);
+        $files = ApplicationContext::getApplication()->getWorkSpace()->readFiles($file,$ignoreFiles);
         dump($files);
     }
 }

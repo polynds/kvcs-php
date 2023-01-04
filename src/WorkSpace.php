@@ -17,9 +17,9 @@ class WorkSpace
         $this->path = $path;
     }
 
-    public function readFiles(array $ignoreFiles): array
+    public function readFiles(string $dirName,array $ignoreFiles): array
     {
-        $finder = Finder::open($this->path);
+        $finder = Finder::open($this->path . (str_starts_with($dirName, DIRECTORY_SEPARATOR) ? '' : DIRECTORY_SEPARATOR) . $dirName);
         foreach ($ignoreFiles as $file) {
             $finder->ignore($file);
         }

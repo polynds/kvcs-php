@@ -12,6 +12,7 @@ use Kit\FileSystem\Directory;
 class Repository
 {
     public const DIR_NAME = '.kit';
+    public const DIR_GIT_NAME = '.git';
 
     protected StagingArea $stagingArea;
 

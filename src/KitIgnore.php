@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * happy coding.
  */
+
 namespace Kit;
 
 class KitIgnore
@@ -15,19 +16,17 @@ class KitIgnore
     /**
      * @var string[]
      */
-    protected array $files;
+    protected array $files = [];
 
     /**
      * @var string[]
      */
-    protected array $dirs;
+    protected array $dirs = [];
 
     public function __construct(string $repositoryPath)
     {
         $this->path = $repositoryPath . DIRECTORY_SEPARATOR . self::FILE_NAME;
-        $this->initDirs();
-        $this->initFiles();
-        $this->parse();
+        $this->reload();
     }
 
     /**
@@ -57,33 +56,40 @@ class KitIgnore
         return $this;
     }
 
-    private function initDirs()
+    private function initDirs(): void
     {
         $this->dirs = [];
-        $this->dirs[] = Repository::DIR_NAME;
+        $baseDir = dirname($this->path);
+        $this->dirs[] = $baseDir . DIRECTORY_SEPARATOR . Repository::DIR_NAME;
+        $this->dirs[] = $baseDir . DIRECTORY_SEPARATOR . Repository::DIR_GIT_NAME;
     }
 
-    private function initFiles()
+    private function initFiles(): void
     {
         $this->files = [];
     }
 
-    private function parse()
+    private function parse(): void
     {
-        if (! file_exists($this->path)) {
+        if (!file_exists($this->path)) {
             return;
         }
         $handel = fopen($this->path, 'r');
-        if (! $handel) {
+        if (!$handel) {
             return;
         }
-        while (feof($handel) !== false) {
-            $line = fgets($handel);var_dump($line);
+        while (($line = fgets($handel)) !== false) {
+            $line = trim($line);
+            $baseDir = dirname($this->path);
+            $line = $baseDir . (str_starts_with($line, DIRECTORY_SEPARATOR) ? '' : DIRECTORY_SEPARATOR) . $line;
             if (is_dir($line)) {
                 $this->dirs[] = $line;
             } elseif (is_file($line)) {
                 $this->files[] = $line;
             }
         }
+        $this->dirs = array_unique($this->dirs);
+        $this->files = array_unique($this->files);
+        fclose($handel);
     }
 }

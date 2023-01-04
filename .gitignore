@@ -1,7 +1,2 @@
 /vendor/
-*.lock
-.php-cs-fixer.php
-phpstan.neon
 .idea
-phpstan-baseline.neon
-test
