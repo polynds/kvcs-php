@@ -21,7 +21,7 @@ class Hash
         $this->file_hash = substr($this->hash, 1);
     }
 
-    public function getHash(): string
+    public function getHashString(): string
     {
         return $this->hash;
     }

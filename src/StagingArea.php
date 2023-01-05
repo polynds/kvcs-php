@@ -50,10 +50,15 @@ class StagingArea
         return $this;
     }
 
-    public function init()
+    public function init(): void
     {
         if (! file_exists($this->path)) {
             FileWriter::write($this->path, '');
         }
+    }
+
+    public function store(): void
+    {
+        FileWriter::write($this->path, serialize($this->index));
     }
 }

@@ -17,7 +17,7 @@ class Repository
 
     protected StagingArea $stagingArea;
 
-    protected LocalRepository $localRepository;
+    protected ObjectDatabase $objectDatabase;
 
     protected string $path;
 
@@ -25,7 +25,7 @@ class Repository
     {
         $this->path = $basePath . DIRECTORY_SEPARATOR . self::DIR_NAME;
         $this->stagingArea = new StagingArea($this->path);
-        $this->localRepository = new LocalRepository($this->path);
+        $this->objectDatabase = new ObjectDatabase($this->path);
     }
 
     public function getPath(): string
@@ -38,16 +38,16 @@ class Repository
         return $this->stagingArea;
     }
 
-    public function getLocalRepository(): LocalRepository
+    public function getObjectDatabase(): ObjectDatabase
     {
-        return $this->localRepository;
+        return $this->objectDatabase;
     }
 
     public function init()
     {
         Directory::create($this->path);
         $this->stagingArea->init();
-        $this->localRepository->init();
+        $this->objectDatabase->init();
     }
 
     private function check()

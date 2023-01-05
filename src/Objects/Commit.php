@@ -6,10 +6,8 @@ declare(strict_types=1);
  */
 namespace Kit\Objects;
 
-class Commit extends AbstractKObject
+class Commit extends AbstractKitObject
 {
-    protected string $hash;
-
     protected string $committer;
 
     protected string $message;
@@ -23,11 +21,6 @@ class Commit extends AbstractKObject
         // TODO: Implement hash() method.
     }
 
-    public function type(): string
-    {
-        // TODO: Implement type() method.
-    }
-
     public function write(): string
     {
         // TODO: Implement write() method.
@@ -36,5 +29,20 @@ class Commit extends AbstractKObject
     public function read(string $bytes): array
     {
         // TODO: Implement read() method.
+    }
+
+    public function toArray(): array
+    {
+        // TODO: Implement toArray() method.
+    }
+
+    public function encode(): string
+    {
+        // TODO: Implement encode() method.
+    }
+
+    public function decode(): string
+    {
+        // TODO: Implement decode() method.
     }
 }

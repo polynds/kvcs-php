@@ -38,6 +38,16 @@ class Application
         $this->addCommands();
     }
 
+    public function getCommands(): array
+    {
+        return $this->commands;
+    }
+
+    public function getBasePath(): string
+    {
+        return $this->basePath;
+    }
+
     public function getRepository(): Repository
     {
         return $this->repository;
@@ -51,6 +61,10 @@ class Application
     public function getKitIgnore(): KitIgnore
     {
         return $this->kitIgnore;
+    }
+
+    public function f(){
+
     }
 
     public function run(string $name, array $parmas)

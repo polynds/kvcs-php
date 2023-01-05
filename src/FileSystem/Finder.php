@@ -6,10 +6,12 @@ declare(strict_types=1);
  */
 namespace Kit\FileSystem;
 
-use SplFileInfo;
-
 class Finder
 {
+    public const DOT = '.';
+
+    public const DOUBLE_DOT = '..';
+
     protected string $path;
 
     protected array $ignore = [];
@@ -40,7 +42,7 @@ class Finder
         $result = [];
         $files = scandir($path);
         foreach ($files as $file) {
-            if (in_array($file, ['.', '..'])) {
+            if ($this->filterDot($file)) {
                 continue;
             }
 
@@ -55,11 +57,10 @@ class Finder
             }
 
             $_file = $path . DIRECTORY_SEPARATOR . $file;
-            var_dump($_file);
             if (is_dir($_file)) {
                 $stack[] = $_file;
             } else {
-                $result[] = new SplFileInfo($_file);
+                $result[] = new \SplFileInfo($_file);
             }
         }
 
@@ -67,6 +68,35 @@ class Finder
             $result = array_merge($result, $this->find($dir));
         }
 
+        return $result;
+    }
+
+    /**
+     * @return FileNode[]
+     */
+    public function scan(string $path = null): array
+    {
+        $result = [];
+        $path = $path ?? $this->path;
+        $files = scandir($path);
+        foreach ($files as $key => $file) {
+            if ($this->filterDot($file)) {
+                continue;
+            }
+            $filePath = $path . DIRECTORY_SEPARATOR . $file;
+            if (is_dir($filePath)) {
+                $result[$key] = (new FileNode())
+                    ->setType(FileType::init(FileType::TYPE_DIR))
+                    ->setName($file)
+                    ->setPath($filePath)
+                    ->setFiles($this->scan($filePath));
+            } else {
+                $result[$key] = (new FileNode())
+                    ->setType(FileType::init(FileType::TYPE_FILE))
+                    ->setName($file)
+                    ->setPath($filePath);
+            }
+        }
         return $result;
     }
 
@@ -79,7 +109,7 @@ class Finder
         $result = [];
         $files = scandir($path);
         foreach ($files as $key => $file) {
-            if (in_array($file, ['.', '..'])) {
+            if ($this->filterDot($file)) {
                 continue;
             }
 
@@ -92,10 +122,15 @@ class Finder
             if (is_dir($_file)) {
                 $result[$key]['child'] = array_merge($result, $this->tree($_file));
             } else {
-                $result[$key] = new SplFileInfo($_file);
+                $result[$key] = new \SplFileInfo($_file);
             }
         }
 
         return $result;
+    }
+
+    public function filterDot(mixed $file): bool
+    {
+        return in_array($file, [self::DOT, self::DOUBLE_DOT]);
     }
 }
