@@ -1,9 +1,8 @@
 #!/usr/bin/env php
 <?php
 /**
- * happy coding.
+ * happy coding!!!
  */
-
 use Kit\Application;
 use Kit\ApplicationContext;
 
@@ -23,7 +22,7 @@ ApplicationContext::setApplication($application);
 try {
     $application->run($command, $parmas);
 } catch (Exception $exception) {
-    echo 'ERROR:' . $exception->getMessage() . PHP_EOL;
+    echo 'ERROR:' . $exception->getMessage() . PHP_EOL . PHP_EOL;
     echo help();
 }
 

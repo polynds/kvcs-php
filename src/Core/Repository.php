@@ -4,19 +4,28 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit;
+namespace Kit\Core;
 
+use Kit\Core\FileSystem\Directory;
 use Kit\Exception\DirectoryNotExistException;
-use Kit\FileSystem\Directory;
 
+/**
+ * 版本库.
+ */
 class Repository
 {
     public const DIR_NAME = '.kit';
 
     public const DIR_GIT_NAME = '.git';
 
+    /**
+     * 暂存区.
+     */
     protected StagingArea $stagingArea;
 
+    /**
+     * 版本数据库.
+     */
     protected ObjectDatabase $objectDatabase;
 
     protected string $path;

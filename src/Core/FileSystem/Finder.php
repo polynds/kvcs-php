@@ -4,7 +4,9 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit\FileSystem;
+namespace Kit\Core\FileSystem;
+
+use function Kit\FileSystem\str_starts_with;
 
 class Finder
 {
@@ -84,16 +86,21 @@ class Finder
                 continue;
             }
             $filePath = $path . DIRECTORY_SEPARATOR . $file;
+            $splFileInfo = new \SplFileInfo($filePath);
             if (is_dir($filePath)) {
                 $result[$key] = (new FileNode())
                     ->setType(FileType::init(FileType::TYPE_DIR))
                     ->setName($file)
                     ->setPath($filePath)
+                    ->setMtime($splFileInfo->getMTime())
+                    ->setCtime($splFileInfo->getCTime())
                     ->setFiles($this->scan($filePath));
             } else {
                 $result[$key] = (new FileNode())
                     ->setType(FileType::init(FileType::TYPE_FILE))
                     ->setName($file)
+                    ->setMtime($splFileInfo->getMTime())
+                    ->setCtime($splFileInfo->getCTime())
                     ->setPath($filePath);
             }
         }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit\FileSystem;
+namespace Kit\Core\FileSystem;
 
 class FileNode
 {
@@ -13,6 +13,16 @@ class FileNode
     protected string $name;
 
     protected string $path;
+
+    /**
+     * 上次修改时间.
+     */
+    protected int $mtime;
+
+    /**
+     * 创建时间.
+     */
+    protected int $ctime;
 
     /**
      * @var FileNode[]
@@ -60,6 +70,28 @@ class FileNode
     public function setFiles(array $files): self
     {
         $this->files = $files;
+        return $this;
+    }
+
+    public function getMtime(): int
+    {
+        return $this->mtime;
+    }
+
+    public function setMtime(int $mtime): self
+    {
+        $this->mtime = $mtime;
+        return $this;
+    }
+
+    public function getCtime(): int
+    {
+        return $this->ctime;
+    }
+
+    public function setCtime(int $ctime): self
+    {
+        $this->ctime = $ctime;
         return $this;
     }
 }

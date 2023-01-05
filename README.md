@@ -21,6 +21,12 @@
 <li>本地仓库</li>
 </ul>
 
+### 版本库、暂存区、工作区
+![img.png](doc/img_1.png)
+![img.png](doc/img1.png)
+https://blog.csdn.net/gold615/article/details/120123244
+https://untitled.pw/software/1176.html
+
 
 https://blog.csdn.net/songyunzu/article/details/92023816
 

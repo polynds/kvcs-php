@@ -12,6 +12,9 @@ use Kit\Command\CommitCommand;
 use Kit\Command\InitCommand;
 use Kit\Command\PullCommand;
 use Kit\Command\PushCommand;
+use Kit\Core\KitIgnore;
+use Kit\Core\Repository;
+use Kit\Core\WorkSpace;
 use Kit\Exception\CommandDoesNotExistException;
 
 class Application
@@ -61,10 +64,6 @@ class Application
     public function getKitIgnore(): KitIgnore
     {
         return $this->kitIgnore;
-    }
-
-    public function f(){
-
     }
 
     public function run(string $name, array $parmas)

@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit\Cache;
+namespace Kit\Core;
 
 class IndexEntry
 {

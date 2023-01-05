@@ -4,9 +4,11 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit;
+namespace Kit\Core;
 
-use Kit\FileSystem\Finder;
+use Kit\Core\FileSystem\Finder;
+
+use function str_starts_with;
 
 class WorkSpace
 {

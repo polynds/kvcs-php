@@ -4,11 +4,11 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit;
+namespace Kit\Core;
 
-use Kit\FileSystem\Directory;
-use Kit\FileSystem\FileWriter;
-use Kit\Objects\AbstractKitObject;
+use Kit\Core\FileSystem\Directory;
+use Kit\Core\FileSystem\FileWriter;
+use Kit\Core\Objects\AbstractKitObject;
 
 class ObjectDatabase
 {

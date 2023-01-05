@@ -4,10 +4,9 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit;
+namespace Kit\Core;
 
-use Kit\Cache\IndexEntry;
-use Kit\FileSystem\FileWriter;
+use Kit\Core\FileSystem\FileWriter;
 
 class StagingArea
 {
