@@ -12,7 +12,7 @@ class StagingArea
 {
     public const FILE_NAME = 'index';
 
-    protected string $path;
+    protected string $filename;
 
     /**
      * @var IndexEntry[]
@@ -21,17 +21,17 @@ class StagingArea
 
     public function __construct(string $repositoryPath)
     {
-        $this->path = $repositoryPath . DIRECTORY_SEPARATOR . self::FILE_NAME;
+        $this->filename = $repositoryPath . DIRECTORY_SEPARATOR . self::FILE_NAME;
     }
 
-    public function getPath(): string
+    public function getFilename(): string
     {
-        return $this->path;
+        return $this->filename;
     }
 
-    public function setPath(string $path): StagingArea
+    public function setFilename(string $filename): StagingArea
     {
-        $this->path = $path;
+        $this->filename = $filename;
         return $this;
     }
 
@@ -51,13 +51,13 @@ class StagingArea
 
     public function init(): void
     {
-        if (! file_exists($this->path)) {
-            FileWriter::write($this->path, '');
+        if (! file_exists($this->filename)) {
+            FileWriter::write($this->filename, '');
         }
     }
 
     public function store(): void
     {
-        FileWriter::write($this->path, serialize($this->index));
+        FileWriter::write($this->filename, serialize($this->index));
     }
 }

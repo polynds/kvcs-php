@@ -7,6 +7,8 @@ declare(strict_types=1);
 namespace Kit\Core;
 
 use Kit\Core\FileSystem\Directory;
+use Kit\Core\ObjectDatabase\ObjectDatabase;
+use Kit\Core\Refs\Refs;
 use Kit\Exception\DirectoryNotExistException;
 
 /**
@@ -30,11 +32,17 @@ class Repository
 
     protected string $path;
 
+    protected Head  $head;
+
+    protected Refs  $refs;
+
     public function __construct(string $basePath)
     {
         $this->path = $basePath . DIRECTORY_SEPARATOR . self::DIR_NAME;
         $this->stagingArea = new StagingArea($this->path);
         $this->objectDatabase = new ObjectDatabase($this->path);
+        $this->head = new Head($this->path);
+        $this->refs = new Refs($this->path);
     }
 
     public function getPath(): string
@@ -57,6 +65,8 @@ class Repository
         Directory::create($this->path);
         $this->stagingArea->init();
         $this->objectDatabase->init();
+        $this->head->init();
+        $this->refs->init();
     }
 
     private function check()

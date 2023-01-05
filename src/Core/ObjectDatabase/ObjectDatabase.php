@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit\Core;
+namespace Kit\Core\ObjectDatabase;
 
 use Kit\Core\FileSystem\Directory;
 use Kit\Core\FileSystem\FileWriter;
