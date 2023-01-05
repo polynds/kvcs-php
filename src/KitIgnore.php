@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 /**
- * happy coding.
+ * happy coding!!!
  */
-
 namespace Kit;
 
 class KitIgnore
@@ -71,11 +70,11 @@ class KitIgnore
 
     private function parse(): void
     {
-        if (!file_exists($this->path)) {
+        if (! file_exists($this->path)) {
             return;
         }
         $handel = fopen($this->path, 'r');
-        if (!$handel) {
+        if (! $handel) {
             return;
         }
         while (($line = fgets($handel)) !== false) {

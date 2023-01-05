@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * happy coding.
+ * happy coding!!!
  */
 namespace Kit\Cache;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * happy coding.
+ * happy coding!!!
  */
 namespace Kit\Command;
 
@@ -18,7 +18,7 @@ class AddCommand extends AbstractCommand implements CommandContract
         $ignoreFiles = ApplicationContext::getApplication()->getKitIgnore()->reload()->getIgnoreFiles();
         $ignoreFiles = array_merge($ignoreDirs, $ignoreFiles);
         var_dump($ignoreFiles);
-        $files = ApplicationContext::getApplication()->getWorkSpace()->readFiles($file,$ignoreFiles);
+        $files = ApplicationContext::getApplication()->getWorkSpace()->readFiles($file, $ignoreFiles);
         dump($files);
     }
 }

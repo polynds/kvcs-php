@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * happy coding.
+ * happy coding!!!
  */
 namespace Kit\Objects;
 
@@ -12,7 +12,7 @@ class Blob extends AbstractKObject
 
     protected int $size;
 
-    protected string $obj; //文本内容
+    protected string $obj; // 文本内容
 
     public function __construct(string $obj)
     {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * happy coding.
+ * happy coding!!!
  */
 namespace Kit;
 
@@ -12,6 +12,7 @@ use Kit\FileSystem\Directory;
 class Repository
 {
     public const DIR_NAME = '.kit';
+
     public const DIR_GIT_NAME = '.git';
 
     protected StagingArea $stagingArea;

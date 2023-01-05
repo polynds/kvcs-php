@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * happy coding.
+ * happy coding!!!
  */
 namespace Kit\FileSystem;
 
@@ -46,11 +46,11 @@ class Finder
 
             $isContinue = false;
             foreach ($this->ignore as $ignore) {
-                if(str_starts_with($path.DIRECTORY_SEPARATOR.$file,$ignore)){
+                if (str_starts_with($path . DIRECTORY_SEPARATOR . $file, $ignore)) {
                     $isContinue = true;
                 }
             }
-            if($isContinue){
+            if ($isContinue) {
                 continue;
             }
 
@@ -63,7 +63,7 @@ class Finder
             }
         }
 
-        while (!empty($dir = array_pop($stack))){
+        while (! empty($dir = array_pop($stack))) {
             $result = array_merge($result, $this->find($dir));
         }
 
