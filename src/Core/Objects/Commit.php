@@ -8,41 +8,57 @@ namespace Kit\Core\Objects;
 
 class Commit extends AbstractKitObject
 {
+    protected Hash $tree;
+
+    /**
+     * @var Hash[]
+     */
+    protected array $parent;
+
+    protected string $author;
+
     protected string $committer;
+
+    protected string $gpgsig;
 
     protected string $message;
 
-    protected string $treeHash;
-
-    protected array $parentHash;
-
-    public function hash(): Hash
+    public function __construct(Hash $parent, Hash $tree)
     {
-        // TODO: Implement hash() method.
+        $this->parent[] = $parent;
+        $this->tree = $tree;
+        $this->hash = new Hash('');
+        $this->setKitObjectType(KitObjectType::init(KitObjectType::COMMIT_OBJECT));
     }
 
-    public function write(): string
+    public function setAuthor(string $author): self
     {
-        // TODO: Implement write() method.
+        $this->author = $author;
+        return $this;
     }
 
-    public function read(string $bytes): array
+    public function setCommitter(string $committer): self
     {
-        // TODO: Implement read() method.
+        $this->committer = $committer;
+        return $this;
+    }
+
+    public function setMessage(string $message): self
+    {
+        $this->message = $message;
+        return $this;
     }
 
     public function toArray(): array
     {
-        // TODO: Implement toArray() method.
-    }
-
-    public function encode(): string
-    {
-        // TODO: Implement encode() method.
-    }
-
-    public function decode(): string
-    {
-        // TODO: Implement decode() method.
+        return [
+            'tree' => $this->tree->getHashString(),
+            'parent' => implode(',', array_map(function ($item) {
+                return $item->getHashString();
+            }, $this->parent)),
+            'author' => $this->author,
+            'committer' => $this->committer,
+            'gpgsig' => $this->gpgsig,
+        ];
     }
 }

@@ -7,9 +7,11 @@ declare(strict_types=1);
 namespace Kit;
 
 use Kit\Command\AddCommand;
+use Kit\Command\CatFileCommand;
 use Kit\Command\CommandContract;
 use Kit\Command\CommitCommand;
 use Kit\Command\InitCommand;
+use Kit\Command\LsFilesCommand;
 use Kit\Command\PullCommand;
 use Kit\Command\PushCommand;
 use Kit\Core\KitIgnore;
@@ -82,6 +84,8 @@ class Application
         $this->addCommand('commit', new CommitCommand());
         $this->addCommand('push', new PushCommand());
         $this->addCommand('pull', new PullCommand());
+        $this->addCommand('ls-files', new LsFilesCommand());
+        $this->addCommand('cat-file', new CatFileCommand());
     }
 
     protected function matchCommand(string $name): ?CommandContract

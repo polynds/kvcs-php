@@ -9,6 +9,7 @@ namespace Kit\Core;
 use Kit\Core\FileSystem\Directory;
 use Kit\Core\ObjectDatabase\ObjectDatabase;
 use Kit\Core\Refs\Refs;
+use Kit\Core\StagingArea\StagingArea;
 use Kit\Exception\DirectoryNotExistException;
 
 /**

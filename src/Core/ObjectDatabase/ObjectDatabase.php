@@ -7,6 +7,7 @@ declare(strict_types=1);
 namespace Kit\Core\ObjectDatabase;
 
 use Kit\Core\FileSystem\Directory;
+use Kit\Core\FileSystem\FileReader;
 use Kit\Core\FileSystem\FileWriter;
 use Kit\Core\Objects\AbstractKitObject;
 
@@ -35,5 +36,14 @@ class ObjectDatabase
         if (! file_exists($fileName)) {
             FileWriter::writeAndCreateFiles($fileName, $object->encode());
         }
+    }
+
+    public function cat(string $hash): ?string
+    {
+        $fileName = $this->path . DIRECTORY_SEPARATOR . substr($hash, 0, 2) . DIRECTORY_SEPARATOR . $hash;
+        if (file_exists($fileName)) {
+            return FileReader::read($fileName);
+        }
+        return null;
     }
 }

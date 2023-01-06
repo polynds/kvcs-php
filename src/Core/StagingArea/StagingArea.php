@@ -4,8 +4,9 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit\Core;
+namespace Kit\Core\StagingArea;
 
+use Kit\Core\FileSystem\FileReader;
 use Kit\Core\FileSystem\FileWriter;
 
 class StagingArea
@@ -54,6 +55,14 @@ class StagingArea
         if (! file_exists($this->filename)) {
             FileWriter::write($this->filename, '');
         }
+    }
+
+    public function load(): self
+    {
+        $index = FileReader::read($this->filename);
+        $index = unserialize($index);
+        $this->index = $index;
+        return $this;
     }
 
     public function store(): void

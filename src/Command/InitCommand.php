@@ -8,12 +8,17 @@ namespace Kit\Command;
 
 use Kit\ApplicationContext;
 
-class InitCommand extends AbstractCommand implements CommandContract
+class InitCommand extends AbstractCommand
 {
-    public function execute(array $parameter = [])
+    protected function handle(array $parameter = [])
     {
-        // 创建目录
         ApplicationContext::getApplication()->getRepository()->init();
-        // 读取工作区，并生成对象
+
+        // TODO 如果当前目录下存在了很多的文件是否要自动执行add呢？
+    }
+
+    protected function validated(array $parameter = []): array
+    {
+        return [];
     }
 }

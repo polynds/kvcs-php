@@ -29,10 +29,12 @@ try {
 function help(): string
 {
     return <<<'HELP'
-kvcs init
-     add [dir]
-     commit
-     push
-     pull
+kit  init             # Initialize the kit repository in the current directory.
+     add [dir | file] # Adds versioning to the specified directory or file.
+     commit [message] # Submit files to the repository.
+     push             # Push files to the repository.
+     pull             # Pull files from the repository.
+     ls-files         # View the contents of the index file for the staging area.
+     cat-file         # View the contents of the specified file in the object database.
 HELP . PHP_EOL;
 }

@@ -6,10 +6,15 @@ declare(strict_types=1);
  */
 namespace Kit\Command;
 
-class PullCommand extends AbstractCommand implements CommandContract
+class PullCommand extends AbstractCommand
 {
-    public function execute(array $parameter = [])
+    protected function handle(array $parameter = [])
     {
         // TODO: Implement execute() method.
+    }
+
+    protected function validated(array $parameter = []): array
+    {
+        return [];
     }
 }
