@@ -6,6 +6,9 @@ declare(strict_types=1);
  */
 namespace Kit\Core\Objects;
 
+/**
+ * 代表文件一次次的版本.
+ */
 class Blob extends AbstractKitObject
 {
     protected int $length;

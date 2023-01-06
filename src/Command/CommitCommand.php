@@ -6,20 +6,18 @@ declare(strict_types=1);
  */
 namespace Kit\Command;
 
-use Kit\ApplicationContext;
+use Kit\Core\CreateTree;
 use Kit\Exception\ParameterErrorException;
 
 class CommitCommand extends AbstractCommand
 {
     protected function handle(array $parameter = [])
     {
+        $message = $parameter[0] ?? '';
         // 1、根据暂存区内容生成tree对象，并保存
-        $stagingArea = ApplicationContext::getApplication()->getRepository()->getStagingArea();
-        $index = $stagingArea->load()->getIndex();
+        (new CreateTree())->create();
 
         // 2、生成commit对象，包含tree对象，并保存
-
-        // 3、清空暂存区
     }
 
     protected function validated(array $parameter = []): array

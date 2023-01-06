@@ -56,6 +56,11 @@ class FileNode
         return $this->path;
     }
 
+    public function getRelativelyPath(string $rootPath): string
+    {
+        return str_replace($rootPath . DIRECTORY_SEPARATOR, '', $this->path);
+    }
+
     public function setPath(string $path): self
     {
         $this->path = $path;

@@ -7,6 +7,7 @@ declare(strict_types=1);
 namespace Kit\Core\StagingArea;
 
 use Kit\Core\FileSystem\FileMode;
+use Kit\Core\FileSystem\FileType;
 
 class IndexEntry
 {
@@ -26,17 +27,38 @@ class IndexEntry
 
     protected ?string $fileHash = null;
 
-    protected ?FileMode $mode = null;
+    protected ?string $path = null;
+
+    protected ?FileMode $fileMode = null;
+
+    protected ?FileType $fileType = null;
+
+    /**
+     * @var IndexEntry[]
+     */
+    protected array $entries = [];
 
     public function __toString(): string
     {
         $hash = $this->getFileHash() ?: ($this->getDirHash() ?: '');
         return sprintf(
-            '%d %s %s',
-            $this->mode->getMode(),
+            '%d %s %s %s',
+            $this->getFileMode()->getMode(),
             $hash,
-            $this->fileName
+            $this->getFileName(),
+            $this->getPath()
         );
+    }
+
+    public function getEntries(): array
+    {
+        return $this->entries;
+    }
+
+    public function addEntries(IndexEntry $entries): self
+    {
+        $this->entries[] = $entries;
+        return $this;
     }
 
     public function getMtime(): ?int
@@ -72,6 +94,17 @@ class IndexEntry
         return $this;
     }
 
+    public function getPath(): ?string
+    {
+        return $this->path;
+    }
+
+    public function setPath(?string $path): self
+    {
+        $this->path = $path;
+        return $this;
+    }
+
     public function getDirHash(): ?string
     {
         return $this->dirHash;
@@ -94,14 +127,25 @@ class IndexEntry
         return $this;
     }
 
-    public function getMode(): ?FileMode
+    public function getFileMode(): ?FileMode
     {
-        return $this->mode;
+        return $this->fileMode;
     }
 
-    public function setMode(?FileMode $mode): self
+    public function setFileMode(?FileMode $fileMode): self
     {
-        $this->mode = $mode;
+        $this->fileMode = $fileMode;
+        return $this;
+    }
+
+    public function getFileType(): ?FileType
+    {
+        return $this->fileType;
+    }
+
+    public function setFileType(?FileType $fileType): self
+    {
+        $this->fileType = $fileType;
         return $this;
     }
 }

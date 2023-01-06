@@ -6,7 +6,7 @@ declare(strict_types=1);
  */
 namespace Kit\Core\FileSystem;
 
-use function Kit\FileSystem\str_starts_with;
+use function str_starts_with;
 
 class Finder
 {

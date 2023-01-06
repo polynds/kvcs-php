@@ -8,6 +8,8 @@ namespace Kit\Command;
 
 use Kit\ApplicationContext;
 use Kit\Core\FileSystem\FileMode;
+use Kit\Core\FileSystem\FileNode;
+use Kit\Core\FileSystem\FileType;
 use Kit\Core\Objects\Blob;
 use Kit\Core\StagingArea\IndexEntry;
 use Kit\Exception\ParameterErrorException;
@@ -30,6 +32,10 @@ class AddCommand extends AbstractCommand
         $stagingArea->store();
     }
 
+    /**
+     * @param FileNode[] $files
+     * @return IndexEntry[]
+     */
     protected function stageFiles(array $files): array
     {
         // 收集文件和目录信息放入暂存区，再数据库中保存为一个文件
@@ -38,7 +44,9 @@ class AddCommand extends AbstractCommand
         foreach ($files as $file) {
             if ($file->getType()->isDirectory()) {
                 $indexs[] = (new IndexEntry())
-                    ->setMode(FileMode::init(FileMode::DIRECTORY))
+                    ->setPath($file->getRelativelyPath(ApplicationContext::getApplication()->getBasePath()))
+                    ->setFileMode(FileMode::init(FileMode::DIRECTORY))
+                    ->setFileType(FileType::init(FileType::TYPE_DIR))
                     ->setFileName($file->getName())
                     ->setMtime($file->getMtime())
                     ->setCtime($file->getCtime());
@@ -47,7 +55,9 @@ class AddCommand extends AbstractCommand
                 $blob = new Blob(file_get_contents($file->getPath()));
                 $objectDatabase->store($blob);
                 $indexs[] = (new IndexEntry())
-                    ->setMode(FileMode::init(FileMode::NORMAL_FILES))
+                    ->setPath($file->getRelativelyPath(ApplicationContext::getApplication()->getBasePath()))
+                    ->setFileMode(FileMode::init(FileMode::NORMAL_FILES))
+                    ->setFileType(FileType::init(FileType::TYPE_FILE))
                     ->setFileHash($blob->getHashString())
                     ->setFileName($file->getName())
                     ->setMtime($file->getMtime())
