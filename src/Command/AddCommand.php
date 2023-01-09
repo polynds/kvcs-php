@@ -11,6 +11,7 @@ use Kit\Core\FileSystem\FileMode;
 use Kit\Core\FileSystem\FileNode;
 use Kit\Core\FileSystem\FileType;
 use Kit\Core\Objects\Blob;
+use Kit\Core\Objects\Hash;
 use Kit\Core\StagingArea\IndexEntry;
 use Kit\Exception\ParameterErrorException;
 
@@ -47,6 +48,7 @@ class AddCommand extends AbstractCommand
                     ->setPath($file->getRelativelyPath(ApplicationContext::getApplication()->getBasePath()))
                     ->setFileMode(FileMode::init(FileMode::DIRECTORY))
                     ->setFileType(FileType::init(FileType::TYPE_DIR))
+                    ->setFileHash((new Hash($file->getName()))->getHashString())
                     ->setFileName($file->getName())
                     ->setMtime($file->getMtime())
                     ->setCtime($file->getCtime());

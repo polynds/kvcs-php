@@ -17,6 +17,7 @@ class CreateTree
     {
         $stagingArea = ApplicationContext::getApplication()->getRepository()->getStagingArea();
         $indexs = $stagingArea->load()->getIndex();
+        var_dump($indexs);
         foreach ($indexs as $index);
     }
 }
