@@ -6,9 +6,7 @@ declare(strict_types=1);
  */
 namespace Kit\Exception;
 
-use Exception;
-
-class CommandDoesNotExistException extends Exception
+class CommandDoesNotExistException extends \Exception
 {
     public function __construct()
     {

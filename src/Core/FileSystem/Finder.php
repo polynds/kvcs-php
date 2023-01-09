@@ -6,8 +6,6 @@ declare(strict_types=1);
  */
 namespace Kit\Core\FileSystem;
 
-use function str_starts_with;
-
 class Finder
 {
     public const DOT = '.';
@@ -50,7 +48,7 @@ class Finder
 
             $isContinue = false;
             foreach ($this->ignore as $ignore) {
-                if (str_starts_with($path . DIRECTORY_SEPARATOR . $file, $ignore)) {
+                if (\str_starts_with($path . DIRECTORY_SEPARATOR . $file, $ignore)) {
                     $isContinue = true;
                 }
             }

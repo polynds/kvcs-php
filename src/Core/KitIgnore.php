@@ -6,8 +6,6 @@ declare(strict_types=1);
  */
 namespace Kit\Core;
 
-use function str_starts_with;
-
 class KitIgnore
 {
     public const FILE_NAME = '.kitignore';
@@ -82,7 +80,7 @@ class KitIgnore
         while (($line = fgets($handel)) !== false) {
             $line = trim($line);
             $baseDir = dirname($this->path);
-            $line = $baseDir . (str_starts_with($line, DIRECTORY_SEPARATOR) ? '' : DIRECTORY_SEPARATOR) . $line;
+            $line = $baseDir . (\str_starts_with($line, DIRECTORY_SEPARATOR) ? '' : DIRECTORY_SEPARATOR) . $line;
             if (is_dir($line)) {
                 $this->dirs[] = $line;
             } elseif (is_file($line)) {

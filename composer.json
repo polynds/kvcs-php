@@ -15,6 +15,7 @@
     "symfony/var-dumper": "^5.2"
   },
   "scripts": {
-    "analyse": "phpstan analyse --memory-limit 1000M -c phpstan.neon"
+    "analyse": "phpstan analyse --memory-limit 1000M -c phpstan.neon",
+    "cs-fix": "php-cs-fixer fix $1"
   }
 }

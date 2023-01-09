@@ -6,9 +6,7 @@ declare(strict_types=1);
  */
 namespace Kit\Exception;
 
-use Exception;
-
-class CouldNotWriteFileException extends Exception
+class CouldNotWriteFileException extends \Exception
 {
     public function __construct(string $fileName, string $error)
     {

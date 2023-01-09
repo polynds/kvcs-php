@@ -6,9 +6,7 @@ declare(strict_types=1);
  */
 namespace Kit\Exception;
 
-use Exception;
-
-class DirectoryNotExistException extends Exception
+class DirectoryNotExistException extends \Exception
 {
     public function __construct(string $dirName)
     {

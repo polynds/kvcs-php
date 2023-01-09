@@ -6,9 +6,7 @@ declare(strict_types=1);
  */
 namespace Kit\Exception;
 
-use Exception;
-
-class ParameterErrorException extends Exception
+class ParameterErrorException extends \Exception
 {
     public function __construct(string $parameterName = null)
     {

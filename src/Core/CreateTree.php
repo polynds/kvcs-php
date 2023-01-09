@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+/**
+ * happy coding!!!
+ */
 namespace Kit\Core;
 
 use Kit\ApplicationContext;
@@ -7,14 +11,12 @@ use Kit\ApplicationContext;
 class CreateTree
 {
     /**
-     * 根据暂存区内容生成tree对象，并保存
+     * 根据暂存区内容生成tree对象，并保存.
      */
-    public function create(){
+    public function create()
+    {
         $stagingArea = ApplicationContext::getApplication()->getRepository()->getStagingArea();
         $indexs = $stagingArea->load()->getIndex();
-        foreach ($indexs as $index){
-
-        }
-
+        foreach ($indexs as $index);
     }
 }
