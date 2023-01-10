@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit\Core\Objects;
+namespace Kit\Core\ObjectDatabase\Objects;
 
 use Kit\Core\FileSystem\FileMode;
 

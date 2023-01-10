@@ -4,7 +4,9 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit\Core\Objects;
+namespace Kit\Core\ObjectDatabase\Objects;
+
+use Kit\Core\Hash;
 
 /**
  * 代表文件一次次的版本.
@@ -26,7 +28,6 @@ class Blob extends AbstractKitObject
     public function toArray(): array
     {
         return [
-            'type' => $this->type(),
             'length' => $this->length,
             'content' => $this->content,
         ];

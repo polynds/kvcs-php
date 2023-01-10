@@ -6,7 +6,7 @@ declare(strict_types=1);
  */
 namespace Kit\Command;
 
-use Kit\Core\CreateTree;
+use Kit\Core\RepositoryTree;
 use Kit\Exception\ParameterErrorException;
 
 class CommitCommand extends AbstractCommand
@@ -15,7 +15,7 @@ class CommitCommand extends AbstractCommand
     {
         $message = $parameter[0] ?? '';
         // 1、根据暂存区内容生成tree对象，并保存
-        (new CreateTree())->create();
+        (new RepositoryTree())->create();
 
         // 2、生成commit对象，包含tree对象，并保存
     }

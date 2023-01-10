@@ -10,8 +10,7 @@ use Kit\ApplicationContext;
 use Kit\Core\FileSystem\FileMode;
 use Kit\Core\FileSystem\FileNode;
 use Kit\Core\FileSystem\FileType;
-use Kit\Core\Objects\Blob;
-use Kit\Core\Objects\Hash;
+use Kit\Core\ObjectDatabase\Objects\Blob;
 use Kit\Core\StagingArea\IndexEntry;
 use Kit\Exception\ParameterErrorException;
 
@@ -44,14 +43,15 @@ class AddCommand extends AbstractCommand
         $objectDatabase = ApplicationContext::getApplication()->getRepository()->getObjectDatabase();
         foreach ($files as $file) {
             if ($file->getType()->isDirectory()) {
-                $indexs[] = (new IndexEntry())
-                    ->setPath($file->getRelativelyPath(ApplicationContext::getApplication()->getBasePath()))
-                    ->setFileMode(FileMode::init(FileMode::DIRECTORY))
-                    ->setFileType(FileType::init(FileType::TYPE_DIR))
-                    ->setFileHash((new Hash($file->getName()))->getHashString())
-                    ->setFileName($file->getName())
-                    ->setMtime($file->getMtime())
-                    ->setCtime($file->getCtime());
+//                var_dump($file->getPath(),$file->getRelativelyPath(ApplicationContext::getApplication()->getBasePath()));
+//                $indexs[] = (new IndexEntry())
+//                    ->setPath($file->getRelativelyPath(ApplicationContext::getApplication()->getBasePath()))
+//                    ->setFileMode(FileMode::init(FileMode::DIRECTORY))
+//                    ->setFileType(FileType::init(FileType::TYPE_DIR))
+//                    ->setFileHash((new Hash($file->getName()))->getHashString())
+//                    ->setFileName($file->getName())
+//                    ->setMtime($file->getMtime())
+//                    ->setCtime($file->getCtime());
                 $indexs = array_merge($indexs, $this->stageFiles($file->getFiles()));
             } else {
                 $blob = new Blob(file_get_contents($file->getPath()));

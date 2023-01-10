@@ -4,7 +4,9 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit\Core\Objects;
+namespace Kit\Core\ObjectDatabase\Objects;
+
+use Kit\Core\Hash;
 
 abstract class AbstractKitObject implements KitObject
 {
@@ -37,11 +39,9 @@ abstract class AbstractKitObject implements KitObject
 
     public function encode(): string
     {
-        return serialize($this->toArray() + ['hash' => $this->getHashString()]);
-    }
-
-    public function decode(): string
-    {
-        return '';
+        return serialize($this->toArray() + [
+            'hash' => $this->getHashString(),
+            'type' => $this->type()->getType(),
+        ]);
     }
 }

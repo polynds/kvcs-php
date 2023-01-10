@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit\Core\Objects;
+namespace Kit\Core\ObjectDatabase\Objects;
 
 class KitObjectType
 {
@@ -24,6 +24,11 @@ class KitObjectType
     }
 
     public function __toString(): string
+    {
+        return $this->type;
+    }
+
+    public function getType(): string
     {
         return $this->type;
     }

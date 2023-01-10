@@ -9,7 +9,7 @@ namespace Kit\Core\ObjectDatabase;
 use Kit\Core\FileSystem\Directory;
 use Kit\Core\FileSystem\FileReader;
 use Kit\Core\FileSystem\FileWriter;
-use Kit\Core\Objects\AbstractKitObject;
+use Kit\Core\ObjectDatabase\Objects\AbstractKitObject;
 
 class ObjectDatabase
 {
@@ -32,7 +32,7 @@ class ObjectDatabase
     public function store(AbstractKitObject $object): void
     {
         $hash = $object->getHashString();
-        $fileName = $this->path . DIRECTORY_SEPARATOR . substr($hash, 0, 2) . DIRECTORY_SEPARATOR . $hash;
+        $fileName = $this->getFileNameFromHash($hash);
         if (! file_exists($fileName)) {
             FileWriter::writeAndCreateFiles($fileName, $object->encode());
         }
@@ -40,10 +40,25 @@ class ObjectDatabase
 
     public function cat(string $hash): ?string
     {
-        $fileName = $this->path . DIRECTORY_SEPARATOR . substr($hash, 0, 2) . DIRECTORY_SEPARATOR . $hash;
+        $fileName = $this->getFileNameFromHash($hash);
         if (file_exists($fileName)) {
             return FileReader::read($fileName);
         }
         return null;
+    }
+
+    public function read(string $hash): ?AbstractKitObject
+    {
+        $fileName = $this->getFileNameFromHash($hash);
+        if (file_exists($fileName)) {
+            $content = FileReader::read($fileName);
+            return ObjectFactory::decode($content);
+        }
+        return null;
+    }
+
+    public function getFileNameFromHash(string $hash): string
+    {
+        return $this->path . DIRECTORY_SEPARATOR . substr($hash, 0, 2) . DIRECTORY_SEPARATOR . $hash;
     }
 }

@@ -4,7 +4,9 @@ declare(strict_types=1);
 /**
  * happy coding!!!
  */
-namespace Kit\Core\Objects;
+namespace Kit\Core\ObjectDatabase\Objects;
+
+use Kit\Core\Hash;
 
 /**
  * 代表项目的一次次的版本.
@@ -33,6 +35,9 @@ class Tree extends AbstractKitObject
 
     public function toArray(): array
     {
-        return [];
+        return [
+            'name' => $this->name,
+            'entries' => serialize($this->entries),
+        ];
     }
 }
