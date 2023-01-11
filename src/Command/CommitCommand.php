@@ -7,17 +7,15 @@ declare(strict_types=1);
 namespace Kit\Command;
 
 use Kit\ApplicationContext;
-use Kit\Core\DateTime;
 use Kit\Exception\ParameterErrorException;
 
 class CommitCommand extends AbstractCommand
 {
     protected function handle(array $parameter = [])
     {
-        var_dump(DateTime::getMillisecond());
         $message = $parameter[0] ?? '';
         // 1、根据暂存区内容生成tree对象，并保存
-//        ApplicationContext::getApplication()->getRepository()->commit();
+        ApplicationContext::getApplication()->getRepository()->commit($message);
 
         // 2、生成commit对象，包含tree对象，并保存
     }

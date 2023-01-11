@@ -81,7 +81,7 @@ class Repository
     /**
      * 根据暂存区内容生成tree对象，并保存.
      */
-    public function commit()
+    public function commit(string $message)
     {
         $stagingArea = ApplicationContext::getApplication()->getRepository()->getStagingArea();
         $objectDatabase = ApplicationContext::getApplication()->getRepository()->getObjectDatabase();
@@ -136,7 +136,7 @@ class Repository
         }
 
         // 生成commit对象
-//        $commit = ObjectFactory::createCommit();
+//        $commit = ObjectFactory::createCommit($topTree,$message);
 //        $objectDatabase->store($commit);
     }
 
