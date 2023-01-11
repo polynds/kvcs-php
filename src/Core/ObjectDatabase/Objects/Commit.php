@@ -6,6 +6,7 @@ declare(strict_types=1);
  */
 namespace Kit\Core\ObjectDatabase\Objects;
 
+use Kit\Core\DateTime;
 use Kit\Core\Hash;
 
 class Commit extends AbstractKitObject
@@ -15,22 +16,27 @@ class Commit extends AbstractKitObject
     /**
      * @var Hash[]
      */
-    protected array $parent;
+    protected array $parent = [];
 
-    protected string $author;
+    protected string $author = '';
 
-    protected string $committer;
+    protected string $committer = '';
 
-    protected string $gpgsig;
+    protected string $gpgsig = '';
 
-    protected string $message;
+    protected string $message = '';
 
-    public function __construct(Hash $parent, Hash $tree)
+    public function __construct(Hash $tree)
     {
-        $this->parent[] = $parent;
         $this->tree = $tree;
-        $this->hash = new Hash('');
+        $this->hash = new Hash(DateTime::getMillisecond());
         $this->setKitObjectType(KitObjectType::init(KitObjectType::COMMIT_OBJECT));
+    }
+
+    public function addParent(Hash $parentHash): self
+    {
+        $this->parent[] = $parentHash;
+        return $this;
     }
 
     public function setAuthor(string $author): self

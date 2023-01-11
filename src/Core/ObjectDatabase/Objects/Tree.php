@@ -20,9 +20,12 @@ class Tree extends AbstractKitObject
      */
     protected array $entries;
 
-    public function __construct(string $name)
+    protected string $path;
+
+    public function __construct(string $name, string $path)
     {
         $this->name = $name;
+        $this->path = $path;
         $this->hash = new Hash($this->name);
         $this->setKitObjectType(KitObjectType::init(KitObjectType::TREE_OBJECT));
     }
@@ -37,6 +40,7 @@ class Tree extends AbstractKitObject
     {
         return [
             'name' => $this->name,
+            'path' => $this->path,
             'entries' => serialize($this->entries),
         ];
     }

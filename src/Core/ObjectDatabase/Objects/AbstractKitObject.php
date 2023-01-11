@@ -41,7 +41,7 @@ abstract class AbstractKitObject implements KitObject
     {
         return serialize($this->toArray() + [
             'hash' => $this->getHashString(),
-            'type' => $this->type()->getType(),
+            'type' => $this->type(),
         ]);
     }
 }

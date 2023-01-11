@@ -18,12 +18,15 @@ class TreeEntry
 
     protected string $path;
 
-    public function __construct(FileMode $mode, string $hash, string $name, string $path)
+    protected KitObjectType $type;
+
+    public function __construct(FileMode $mode, string $hash, string $name, string $path, KitObjectType $type)
     {
         $this->mode = $mode;
         $this->hash = $hash;
         $this->name = $name;
         $this->path = $path;
+        $this->type = $type;
     }
 
     public function getMode(): FileMode
@@ -44,5 +47,10 @@ class TreeEntry
     public function getPath(): string
     {
         return $this->path;
+    }
+
+    public function getType(): KitObjectType
+    {
+        return $this->type;
     }
 }

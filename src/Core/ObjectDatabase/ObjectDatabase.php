@@ -57,6 +57,11 @@ class ObjectDatabase
         return null;
     }
 
+    public function exists(string $hash): bool
+    {
+        return file_exists($this->getFileNameFromHash($hash));
+    }
+
     public function getFileNameFromHash(string $hash): string
     {
         return $this->path . DIRECTORY_SEPARATOR . substr($hash, 0, 2) . DIRECTORY_SEPARATOR . $hash;

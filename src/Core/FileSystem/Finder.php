@@ -8,10 +8,6 @@ namespace Kit\Core\FileSystem;
 
 class Finder
 {
-    public const DOT = '.';
-
-    public const DOUBLE_DOT = '..';
-
     protected string $path;
 
     protected array $ignore = [];
@@ -136,6 +132,6 @@ class Finder
 
     public function filterDot(mixed $file): bool
     {
-        return in_array($file, [self::DOT, self::DOUBLE_DOT]);
+        return in_array($file, [Path::DOT, Path::DOUBLE_DOT]);
     }
 }

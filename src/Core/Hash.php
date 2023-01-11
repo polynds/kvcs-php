@@ -17,8 +17,8 @@ class Hash
     public function __construct(string $str)
     {
         $this->hash = sha1($str);
-        $this->dir_hash = substr($this->hash, 0, 1);
-        $this->file_hash = substr($this->hash, 1);
+        $this->dir_hash = substr($this->hash, 0, 2);
+        $this->file_hash = substr($this->hash, 2);
     }
 
     public function getHashString(): string
