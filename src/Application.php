@@ -14,6 +14,7 @@ use Kit\Command\InitCommand;
 use Kit\Command\LsFilesCommand;
 use Kit\Command\PullCommand;
 use Kit\Command\PushCommand;
+use Kit\Command\ReadTreeCommand;
 use Kit\Core\KitIgnore;
 use Kit\Core\Repository;
 use Kit\Core\WorkSpace;
@@ -68,13 +69,13 @@ class Application
         return $this->kitIgnore;
     }
 
-    public function run(string $name, array $parmas)
+    public function run(string $name, array $params)
     {
         $command = $this->matchCommand($name);
         if (is_null($command)) {
             throw new CommandDoesNotExistException();
         }
-        $command->execute($parmas);
+        $command->execute($params);
     }
 
     public function addCommands(): void
@@ -86,6 +87,7 @@ class Application
         $this->addCommand('pull', new PullCommand());
         $this->addCommand('ls-files', new LsFilesCommand());
         $this->addCommand('cat-file', new CatFileCommand());
+        $this->addCommand('read-tree', new ReadTreeCommand());
     }
 
     protected function matchCommand(string $name): ?CommandContract

@@ -132,6 +132,7 @@ class Repository
 
         // 保存所有的tree,生成commit对象
         foreach ($trees as $tree) {
+            var_dump($tree->encode());
             $objectDatabase->store($tree);
         }
 
