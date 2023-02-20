@@ -24,6 +24,17 @@
 ### 版本库、暂存区、工作区
 ![img.png](doc/img_1.png)
 ![img.png](doc/img1.png)
+
+https://xie.infoq.cn/article/308a9fe53f0d7dc51283e4347
+https://zhuanlan.zhihu.com/p/76634986
+https://doc.yonyoucloud.com/doc/wiki/project/pro-git/git-internals.html
+https://www.freecodecamp.org/chinese/news/git-internals-objects-branches-create-repo/
+https://www.cnblogs.com/tanshaoshenghao/p/14200420.html
+https://git-scm.com/book/zh/v2/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-Git-%E5%AF%B9%E8%B1%A1
+https://developer.aliyun.com/article/761663#slide-8
+https://page.om.qq.com/page/Oa0cdfF_bPIPcyZNQ4-p-ryg0
+
+
 https://blog.csdn.net/gold615/article/details/120123244
 https://untitled.pw/software/1176.html
 
